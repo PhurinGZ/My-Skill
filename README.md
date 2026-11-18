@@ -1,36 +1,120 @@
 # My-Skill
 
-Personal collection of self-owned AI agent skills — only skills with no upstream source are vendored here. Skills installed from external repos (anthropics/skills, vercel-labs, obra/superpowers, etc.) can always be re-installed with `npx skills add`, so they are not kept in this repo.
+Personal collection of self-owned AI agent skills. Only skills without an upstream source are vendored here. Skills installed from external repositories (such as `anthropics/skills`, `vercel-labs`, and `obra/superpowers`) can be re-installed with `npx skills add`, so they are not duplicated in this repository.
 
-## Skills
+## Repository structure
 
-**Installed at** — **Global**: `~/.agents/skills/`, `~/.devin/skills/` (every project) · **Project**: `<project>/.devin/skills/`, `.agents/skills/`, `.qoder/skills/`, `.windsurf/skills/`
+Skills are grouped by their primary use case under `skills/<category>/<skill-name>/`. Each skill keeps its own `SKILL.md` and any supporting files (references, scripts, assets, agents, and examples) together.
 
-| Skill | Installed at | Description |
-|---|---|---|
-| `blackbox-web-pentest` | Project | Black-box (URL-only) security testing against a web app — 5 depth levels |
-| `debug-and-test` | Project | Debug + test workflow |
-| `fastapi-performance` | Project | Diagnose/fix FastAPI perf: slow endpoints, latency, event-loop stalls |
-| `fix-odoo-xml` | Project | Fix Odoo XML view warnings and layout issues |
-| `fullstack` | Project | Full-stack guidance: React + Strapi v5 CMS + PostgreSQL |
-| `human-ux-design` | Global + Project | Frontend interfaces indistinguishable from human-crafted design |
-| `kb-article` | Global | Draft knowledge base articles from resolved issues or common questions |
-| `mockup` | Project | Mockup generation |
-| `nextjs-security-audit` | Project | Full-codebase security audit for Next.js (App/Pages Router) |
-| `odoo-17` | Project | Odoo 17 dev best practices: model inheritance, view overrides, security |
-| `odoo-cogmenu-export` | Project | Custom export actions in the Odoo cog menu + binary downloads |
-| `odoo-fx-project` | Project | FX Project domain logic: models, calculations, state flow, permissions |
-| `odoo-fx-project-reports` | Project | Fix/improve FX Project QWeb PDF reports (totals, table alignment) |
-| `odoo18-report-skill` | Project | Create / customize / debug QWeb PDF reports in Odoo 18 |
-| `project-tree` | Project | Project/directory tree generator พร้อมคำอธิบายแต่ละโฟลเดอร์ |
-| `prompt-engineer` | Project | วิเคราะห์และปรับปรุง prompt ให้ชัดเจน ประหยัด token |
-| `react-performance-optimization` | Project | Fix slow React apps: re-renders, bundles, janky lists |
-| `ui-ux-design-guide` | Project | UI/UX design guidelines |
-| `write-user-manual` | Global | End-user / admin manuals as MD / JSON / Word / PDF / HTML |
+```text
+skills/
+├── ai-and-prompting/
+│   └── prompt-engineer/
+├── backend-and-fullstack/
+│   ├── fastapi-performance/
+│   └── fullstack/
+├── developer-tools/
+│   └── project-tree/
+├── documentation-and-writing/
+│   ├── kb-article/
+│   └── write-user-manual/
+├── frontend-and-ui-ux/
+│   ├── human-ux-design/
+│   ├── react-performance-optimization/
+│   └── ui-ux-design-guide/
+├── odoo-and-erp/
+│   ├── fix-odoo-xml/
+│   ├── mockup/
+│   ├── odoo-17/
+│   ├── odoo-cogmenu-export/
+│   ├── odoo-fx-project/
+│   ├── odoo-fx-project-reports/
+│   └── odoo18-report-skill/
+├── security/
+│   ├── blackbox-web-pentest/
+│   └── nextjs-security-audit/
+└── testing-and-debugging/
+    └── debug-and-test/
+```
+
+## Skills catalog
+
+**Installed at** — **Global**: `~/.agents/skills/`, `~/.devin/skills/` (available across projects) · **Project**: `<project>/.devin/skills/`, `.agents/skills/`, `.qoder/skills/`, `.windsurf/skills/`
+
+### Security
+
+| Skill ID | Directory | Scope | Description |
+|---|---|---|---|
+| `blackbox-web-pentest` | `skills/security/blackbox-web-pentest` | Project | Black-box (URL-only) security testing against a web app — 5 depth levels |
+| `nextjs-security-audit` | `skills/security/nextjs-security-audit` | Project | Full-codebase security audit for Next.js App Router and Pages Router |
+
+### Testing and debugging
+
+| Skill ID | Directory | Scope | Description |
+|---|---|---|---|
+| `debug-and-test` | `skills/testing-and-debugging/debug-and-test` | Project | Systematic debugging, error analysis, and test-case development |
+
+### Backend and full-stack development
+
+| Skill ID | Directory | Scope | Description |
+|---|---|---|---|
+| `fastapi-performance` | `skills/backend-and-fullstack/fastapi-performance` | Project | Diagnose and fix FastAPI performance problems |
+| `fullstack-react-strapi` | `skills/backend-and-fullstack/fullstack` | Project | Full-stack guidance for React, Strapi v5, and PostgreSQL |
+
+### Frontend and UI/UX
+
+| Skill ID | Directory | Scope | Description |
+|---|---|---|---|
+| `human-ux-design` | `skills/frontend-and-ui-ux/human-ux-design` | Global + Project | Design, build, and review high-quality frontend interfaces |
+| `react-performance-optimization` | `skills/frontend-and-ui-ux/react-performance-optimization` | Project | Diagnose and improve React rendering, bundles, and loading performance |
+| `ui-ux-design-guide` | `skills/frontend-and-ui-ux/ui-ux-design-guide` | Project | UI/UX design guidance for web and mobile products |
+
+### Odoo and ERP
+
+| Skill ID | Directory | Scope | Description |
+|---|---|---|---|
+| `fix-odoo-xml` | `skills/odoo-and-erp/fix-odoo-xml` | Project | Fix Odoo 17 XML view warnings and layout issues |
+| `mockup` | `skills/odoo-and-erp/mockup` | Project | Create interactive Odoo-style HTML mockups and ERP prototypes |
+| `odoo-17` | `skills/odoo-and-erp/odoo-17` | Project | Odoo 17 development patterns, models, views, and security |
+| `odoo-cogmenu-export` | `skills/odoo-and-erp/odoo-cogmenu-export` | Project | Add custom export and download actions to the Odoo cog menu |
+| `odoo-fx-project-domain` | `skills/odoo-and-erp/odoo-fx-project` | Project | FX Project domain logic, calculations, state flow, and permissions |
+| `odoo-fx-project-reports` | `skills/odoo-and-erp/odoo-fx-project-reports` | Project | Fix and improve FX Project QWeb PDF reports |
+| `odoo18-report` | `skills/odoo-and-erp/odoo18-report-skill` | Project | Create, customize, and debug Odoo 18 QWeb PDF reports |
+
+### Documentation and writing
+
+| Skill ID | Directory | Scope | Description |
+|---|---|---|---|
+| `kb-article` | `skills/documentation-and-writing/kb-article` | Global | Draft knowledge base articles from resolved issues or common questions |
+| `write-user-manual` | `skills/documentation-and-writing/write-user-manual` | Global | Write end-user and admin manuals in Markdown, JSON, Word, PDF, or HTML |
+
+### Developer tools
+
+| Skill ID | Directory | Scope | Description |
+|---|---|---|---|
+| `project-tree` | `skills/developer-tools/project-tree` | Project | Generate project and directory trees with explanations |
+
+### AI and prompting
+
+| Skill ID | Directory | Scope | Description |
+|---|---|---|---|
+| `prompt-engineer` | `skills/ai-and-prompting/prompt-engineer` | Project | Analyze and improve prompts for clarity, efficiency, and accuracy |
+
+## Using the skills CLI
+
+The repository uses the supported category layout, so skills can still be discovered by the Skills CLI.
+
+```bash
+# List skills available in this repository
+npx skills add PhurinGZ/My-Skill --list
+
+# Install one skill by its Skill ID
+npx skills add PhurinGZ/My-Skill --skill fastapi-performance
+```
 
 ## Installed but not vendored (has upstream owner)
 
-Re-installable via `npx skills add` / their source repo:
+Re-installable via `npx skills add` / their source repository:
 
 | Skill | Source |
 |---|---|
@@ -58,4 +142,4 @@ Re-installable via `npx skills add` / their source repo:
 
 Shipped with Devin Desktop — part of the app, not vendored:
 
-`act-on-feedback`, `code-review`, `commit`, `create-draft-pr`, `create-pr`, `fix-ci`, `generate-run-commands`, `merge`, `sync`, `sync-upstream`, `troubleshoot`, `update-pr`, `update-skills`, plus `devin-cli`, `declarative-repo-setup`, `upload-secrets`
+`act-on-feedback`, `code-review`, `commit`, `create-draft-pr`, `create-pr`, `fix-ci`, `generate-run-commands`, `merge`, `sync`, `sync-upstream`, `troubleshoot`, `update-pr`, `update-skills`, plus `devin-cli`, `declarative-repo-setup`, `upload-secrets`.
