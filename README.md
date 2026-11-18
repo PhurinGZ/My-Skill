@@ -9,100 +9,61 @@ Personal collection of AI agent skills.
 | `write-user-manual` | Write end-user / admin manuals (คู่มือการใช้งานระบบ) as Markdown, JSON (per-paragraph i18n th/en), Word/PDF, or HTML |
 | `project-tree` | สร้างผังโครงสร้างโปรเจกต์ (directory tree) พร้อมคำอธิบายสั้นๆ ของแต่ละโฟลเดอร์/ไฟล์ |
 
-## Global skills (all projects)
+## All installed skills
 
-Installed under `~/.agents/skills/` (universal — shared by Amp, Cline, Codex, Cursor, etc.), `~/.devin/skills/` and `~/.config/devin/skills/`:
+Scope legend — **Global**: `~/.agents/skills/`, `~/.devin/skills/`, `~/.config/devin/skills/` (available in every project) · **Project**: `<project>/.devin/skills/`, `.agents/skills/`, `.qoder/skills/`, `.windsurf/skills/` · **Repo**: source lives in this repository
 
-| Skill | Description |
-|---|---|
-| `agent-browser` | Browser automation CLI — navigate pages, fill forms, take screenshots, extract data |
-| `brainstorming` | Sharpen ideas before any creative work — features, components, planning |
-| `checklist-design` | Design audit / critique grounded in Checklist Design's published checklists |
-| `clean-code` | Refactor working code per Robert C. Martin's Clean Code principles |
-| `design-taste-frontend` | Anti-slop frontend skill — professional company/landing pages ([Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill)) |
-| `find-skills` | Discover and install agent skills ("how do I do X") |
-| `frontend-design` | Distinctive, high-quality frontend interfaces — landing pages, dashboards, components |
-| `grill-me` | A relentless interview to sharpen a plan or design |
-| `human-ux-design` | Frontend interfaces indistinguishable from human-crafted design |
-| `implementing-plans` | Execute an approved implementation plan task-by-task |
-| `improve-codebase-architecture` | Scan a codebase for deepening opportunities, present a visual HTML report |
-| `kb-article` | Draft knowledge base articles from resolved issues or common questions |
-| `test-driven-development` | TDD — write failing tests before implementation code |
-| `write-user-manual` | End-user / admin manuals as MD / JSON / Word / PDF / HTML |
-| `writing-plans` | Turn specs / requirements into a multi-step implementation plan |
-
-## Project-level skills
-
-Per-project skills under `<project>/.devin/skills/`, `<project>/.agents/skills/` and `<project>/.qoder/skills/`. Skills already described in the global table are listed by name only.
-
-### spintruck-erp (Odoo 18 ERP)
-
-- `odoo-skill` — Odoo 18 CE development reference (models, views, XML, OWL, QWeb, security)
-- `odoo18-report-skill` — Create / customize / debug QWeb PDF reports in Odoo 18
-- `prompt-engineer` — วิเคราะห์และปรับปรุง prompt ให้ชัดเจน ประหยัด token
-- `playwright-best-practices` — Playwright tests: POM, CI/CD, flaky-test fixes, auth, visual testing
-- `docx` — Create / read / edit Word documents (.docx)
-- `xlsx` — Create / edit / fix spreadsheets (.xlsx, .csv)
-- `pdf` — Read, merge, split, fill, OCR PDF files
-- `agent-browser`, `project-tree`, `skill-creator` (.qoder — create/improve skills)
-
-### 27engineer (Odoo 17 FX Project)
-
-- `odoo-17` — Odoo 17 dev best practices: model inheritance, view overrides, security
-- `odoo-fx-project` — FX Project domain logic: models, calculations, state flow, permissions
-- `odoo-fx-project-reports` — Fix/improve FX Project QWeb PDF reports (totals, table alignment)
-- `odoo-cogmenu-export` — Custom export actions in the Odoo 17 cog menu + binary downloads
-- `fix-odoo-xml` — Fix Odoo 17 XML view warnings and layout issues
-- `debug-and-test` — Debug + test workflow
-- `tdd` — Test-driven development (red-green-refactor)
-- `agent-browser`, `brainstorming`, `find-skills`, `pdf`, `prompt-engineer`, `xlsx`, `skill-creator` (.qoder)
-
-### cnx-exchange-1 (ElysiaJS / Next.js)
-
-- `elysiajs` — Build backends with ElysiaJS (type-safe Bun framework)
-- `elysiajs-performance-review` — Audit ElysiaJS code for performance issues
-- `elysiajs-security` — Audit ElysiaJS code for security vulnerabilities
-- `nextjs-performance` — Next.js optimization: Core Web Vitals, caching, streaming, bundles
-- `nextjs-security-audit` — Full-codebase security audit for Next.js (App/Pages Router)
-- `ui-ux-design-guide` — UI/UX design guidelines
-- `docx`
-
-### cnx-web-chat (Hono / Vite / React)
-
-- `hono-jsx` — Server-rendered UI for Hono apps with hono/jsx (pages, layouts, forms)
-- `vercel-react-best-practices` — React/Next.js performance guidelines from Vercel Engineering
-- `vite` — Vite config, plugin API, SSR, Rolldown migration
-- `api-security-best-practices` — Secure API design: authn/authz, validation, rate limiting
-- `design-taste-frontend`, `project-tree`, `ui-ux-design-guide`
-
-### tourism
-
-- `fullstack` — Full-stack guidance: React + Strapi v5 CMS + PostgreSQL
-- `impeccable` — Design/redesign/critique/polish frontend work
-- `api-security-best-practices`, `docx`, `agent-browser`, `project-tree`, `react-performance-optimization`, `ui-ux-design-guide`
-
-### wald (FastAPI backend)
-
-- `blackbox-web-pentest` — Black-box (URL-only) security testing against a web app
-- `fastapi` — FastAPI best practices: Pydantic models, dependencies, streaming
-- `fastapi-performance` — Diagnose/fix FastAPI perf: slow endpoints, latency, event-loop stalls
-- `high-end-visual-design` — High-end agency design: fonts, spacing, shadows, animations
-- `agent-browser`, `api-security-best-practices`, `find-skills`, `project-tree`, `react-performance-optimization`, `ui-ux-design-guide`, `xlsx`
-
-### mx-ai / mx-front (React + Strapi)
-
-- `react-performance-optimization` — Fix slow React apps: re-renders, bundles, janky lists
-- `agent-browser`, `project-tree`, `ui-ux-design-guide`
-
-### mockup
-
-- `mockup` (.windsurf — mockup generation)
-- `frontend-design`, `human-ux-design`
-
-### Others
-
-- `wald-branch` — `ui-ux-design-guide`
-- `Documents` — `xlsx`
+| Skill | Scope | Description |
+|---|---|---|
+| `agent-browser` | Global + Project | Browser automation CLI — navigate pages, fill forms, take screenshots, extract data |
+| `api-security-best-practices` | Project | Secure API design: authn/authz, input validation, rate limiting |
+| `blackbox-web-pentest` | Project | Black-box (URL-only) security testing against a web app |
+| `brainstorming` | Global + Project | Sharpen ideas before any creative work — features, components, planning |
+| `checklist-design` | Global | Design audit / critique grounded in Checklist Design's published checklists |
+| `clean-code` | Global | Refactor working code per Robert C. Martin's Clean Code principles |
+| `debug-and-test` | Project | Debug + test workflow |
+| `design-taste-frontend` | Global + Project | Anti-slop frontend skill — professional company/landing pages ([Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill)) |
+| `docx` | Project | Create / read / edit Word documents (.docx) |
+| `elysiajs` | Project | Build backends with ElysiaJS (type-safe Bun framework) |
+| `elysiajs-performance-review` | Project | Audit ElysiaJS code for performance issues |
+| `elysiajs-security` | Project | Audit ElysiaJS code for security vulnerabilities |
+| `fastapi` | Project | FastAPI best practices: Pydantic models, dependencies, streaming |
+| `fastapi-performance` | Project | Diagnose/fix FastAPI perf: slow endpoints, latency, event-loop stalls |
+| `find-skills` | Global + Project | Discover and install agent skills ("how do I do X") |
+| `fix-odoo-xml` | Project | Fix Odoo XML view warnings and layout issues |
+| `frontend-design` | Global + Project | Distinctive, high-quality frontend interfaces — landing pages, dashboards, components |
+| `fullstack` | Project | Full-stack guidance: React + Strapi v5 CMS + PostgreSQL |
+| `grill-me` | Global | A relentless interview to sharpen a plan or design |
+| `high-end-visual-design` | Project | High-end agency design: fonts, spacing, shadows, animations |
+| `hono-jsx` | Project | Server-rendered UI for Hono apps with hono/jsx (pages, layouts, forms) |
+| `human-ux-design` | Global + Project | Frontend interfaces indistinguishable from human-crafted design |
+| `impeccable` | Project | Design / redesign / critique / polish frontend work |
+| `implementing-plans` | Global | Execute an approved implementation plan task-by-task |
+| `improve-codebase-architecture` | Global | Scan a codebase for deepening opportunities, present a visual HTML report |
+| `kb-article` | Global | Draft knowledge base articles from resolved issues or common questions |
+| `mockup` | Project | Mockup generation |
+| `nextjs-performance` | Project | Next.js optimization: Core Web Vitals, caching, streaming, bundles |
+| `nextjs-security-audit` | Project | Full-codebase security audit for Next.js (App/Pages Router) |
+| `odoo-17` | Project | Odoo 17 dev best practices: model inheritance, view overrides, security |
+| `odoo-cogmenu-export` | Project | Custom export actions in the Odoo cog menu + binary downloads |
+| `odoo-fx-project` | Project | FX Project domain logic: models, calculations, state flow, permissions |
+| `odoo-fx-project-reports` | Project | Fix/improve FX Project QWeb PDF reports (totals, table alignment) |
+| `odoo-skill` | Project | Odoo 18 CE development reference (models, views, XML, OWL, QWeb, security) |
+| `odoo18-report-skill` | Project | Create / customize / debug QWeb PDF reports in Odoo 18 |
+| `pdf` | Project | Read, merge, split, fill, OCR PDF files |
+| `playwright-best-practices` | Project | Playwright tests: POM, CI/CD, flaky-test fixes, auth, visual testing |
+| `project-tree` | Repo + Project | Project/directory tree generator พร้อมคำอธิบายแต่ละโฟลเดอร์ |
+| `prompt-engineer` | Project | วิเคราะห์และปรับปรุง prompt ให้ชัดเจน ประหยัด token |
+| `react-performance-optimization` | Project | Fix slow React apps: re-renders, bundles, janky lists |
+| `skill-creator` | Project | Create new skills, modify and improve existing skills |
+| `tdd` | Project | Test-driven development (red-green-refactor) |
+| `test-driven-development` | Global | TDD — write failing tests before implementation code |
+| `ui-ux-design-guide` | Project | UI/UX design guidelines |
+| `vercel-react-best-practices` | Project | React/Next.js performance guidelines from Vercel Engineering |
+| `vite` | Project | Vite config, plugin API, SSR, Rolldown migration |
+| `write-user-manual` | Repo + Global | End-user / admin manuals as MD / JSON / Word / PDF / HTML |
+| `writing-plans` | Global | Turn specs / requirements into a multi-step implementation plan |
+| `xlsx` | Project | Create / edit / fix spreadsheets (.xlsx, .csv) |
 
 ## Devin Desktop built-in skills
 
