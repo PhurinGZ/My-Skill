@@ -10,8 +10,6 @@ Personal collection of self-owned AI agent skills — only skills with no upstre
 |---|---|---|
 | `blackbox-web-pentest` | Project | Black-box (URL-only) security testing against a web app — 5 depth levels |
 | `debug-and-test` | Project | Debug + test workflow |
-| `elysiajs-performance-review` | Project | Audit ElysiaJS code for performance issues |
-| `elysiajs-security` | Project | Audit ElysiaJS code for security vulnerabilities |
 | `fastapi-performance` | Project | Diagnose/fix FastAPI perf: slow endpoints, latency, event-loop stalls |
 | `fix-odoo-xml` | Project | Fix Odoo XML view warnings and layout issues |
 | `fullstack` | Project | Full-stack guidance: React + Strapi v5 CMS + PostgreSQL |
@@ -44,6 +42,7 @@ Re-installable via `npx skills add` / their source repo:
 | `design-taste-frontend`, `high-end-visual-design` | Leonxlnx/taste-skill |
 | `docx`, `pdf`, `xlsx`, `frontend-design`, `skill-creator` | anthropics/skills |
 | `elysiajs` | elysiajs/skills |
+| `elysiajs-performance-review`, `elysiajs-security` | (removed — has owner) |
 | `fastapi` | fastapi/fastapi |
 | `find-skills` | vercel-labs/skills |
 | `hono-jsx` | honojs/skills |
