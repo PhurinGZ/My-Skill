@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    ตัวอย่าง: ใบกำกับภาษีภาษาไทย สำหรับ Odoo 18
+    model: account.move
+    ใช้เป็น reference template — ปรับ module name ก่อนใช้งาน
+-->
+<odoo>
+
+    <!-- Paper Format A4 สำหรับภาษาไทย -->
+    <record id="paperformat_th_a4" model="report.paperformat">
+        <field name="name">Thai A4</field>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">25</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line">False</field>
+        <field name="header_spacing">10</field>
+    </record>
+
+    <!-- Report Action -->
+    <record id="action_report_th_invoice" model="ir.actions.report">
+        <field name="name">ใบกำกับภาษี / Tax Invoice</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">my_module.report_th_invoice_document</field>
+        <field name="report_file">my_module.report_th_invoice_document</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="my_module.paperformat_th_a4"/>
+    </record>
+
+    <!-- QWeb Template -->
+    <template id="report_th_invoice_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <!-- re-browse ตามภาษา partner -->
+                <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang or 'th_TH')"/>
+                <t t-call="web.external_layout">
+                    <div class="page">
+
+                        <!-- Font ภาษาไทย -->
+                        <style>
+                            * { font-family: 'THSarabunNew', 'Garuda', sans-serif; font-size: 14px; }
+                            h2 { font-size: 20px; }
+                            .th-header { border: 2px solid #000; padding: 8px; margin-bottom: 10px; }
+                            .th-table { width: 100%; border-collapse: collapse; }
+                            .th-table th, .th-table td {
+                                border: 1px solid #000;
+                                padding: 4px 8px;
+                            }
+                            .th-table th { background-color: #f0f0f0; text-align: center; }
+                            .text-right { text-align: right; }
+                            .text-center { text-align: center; }
+                            .total-row { font-weight: bold; background-color: #f5f5f5; }
+                            .signature-box {
+                                border: 1px solid #000;
+                                height: 80px;
+                                margin-top: 5px;
+                            }
+                        </style>
+
+                        <!-- Header: ชื่อเอกสาร -->
+                        <div class="text-center" style="margin-bottom:8px;">
+                            <h2>ใบกำกับภาษี / Tax Invoice</h2>
+                            <t t-if="o.move_type == 'out_refund'">
+                                <h3>(ใบลดหนี้ / Credit Note)</h3>
+                            </t>
+                        </div>
+
+                        <!-- ข้อมูลผู้ขายและผู้ซื้อ -->
+                        <div class="row">
+                            <!-- ผู้ขาย -->
+                            <div class="col-6">
+                                <div class="th-header">
+                                    <strong>ผู้ขาย / Seller</strong><br/>
+                                    <span t-field="o.company_id.name"/><br/>
+                                    <span t-field="o.company_id.street"/><br/>
+                                    <t t-if="o.company_id.street2">
+                                        <span t-field="o.company_id.street2"/><br/>
+                                    </t>
+                                    <span t-field="o.company_id.city"/>
+                                    <span t-field="o.company_id.zip"/><br/>
+                                    เลขประจำตัวผู้เสียภาษี:
+                                    <span t-esc="o.company_id.vat or '-'"/>
+                                </div>
+                            </div>
+                            <!-- ผู้ซื้อ -->
+                            <div class="col-6">
+                                <div class="th-header">
+                                    <strong>ผู้ซื้อ / Buyer</strong><br/>
+                                    <span t-field="o.partner_id.name"/><br/>
+                                    <span t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address"]}'/>
+                                    <br/>
+                                    เลขประจำตัวผู้เสียภาษี:
+                                    <span t-esc="o.partner_id.vat or '-'"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- เลขที่เอกสาร / วันที่ -->
+                        <div class="row" style="margin-bottom:8px;">
+                            <div class="col-4">
+                                <strong>เลขที่:</strong>
+                                <span t-field="o.name"/>
+                            </div>
+                            <div class="col-4">
+                                <strong>วันที่:</strong>
+                                <span t-field="o.invoice_date" t-options='{"widget": "date"}'/>
+                            </div>
+                            <div class="col-4">
+                                <t t-if="o.invoice_date_due">
+                                    <strong>ครบกำหนด:</strong>
+                                    <span t-field="o.invoice_date_due" t-options='{"widget": "date"}'/>
+                                </t>
+                            </div>
+                        </div>
+
+                        <!-- ตารางรายการ -->
+                        <table class="th-table" style="margin-bottom:8px;">
+                            <thead>
+                                <tr>
+                                    <th style="width:5%">ลำดับ</th>
+                                    <th style="width:35%">รายการสินค้า / Description</th>
+                                    <th style="width:10%">จำนวน</th>
+                                    <th style="width:10%">หน่วย</th>
+                                    <th style="width:15%">ราคาต่อหน่วย</th>
+                                    <th style="width:10%">ส่วนลด %</th>
+                                    <th style="width:15%">จำนวนเงิน</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.invoice_line_ids" t-as="line">
+                                    <tr>
+                                        <td class="text-center">
+                                            <span t-esc="line_index + 1"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.name"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="line.quantity"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="line.product_uom_id"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="line.price_unit"
+                                                  t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-esc="'%.2f' % line.discount if line.discount else '-'"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="line.price_subtotal"
+                                                  t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6" class="text-right">ราคาก่อนภาษี / Subtotal</td>
+                                    <td class="text-right">
+                                        <span t-field="o.amount_untaxed"
+                                              t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <t t-foreach="o.amount_by_group" t-as="amount_by_group">
+                                    <tr>
+                                        <td colspan="6" class="text-right">
+                                            <span t-esc="amount_by_group[0]"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="'%.2f' % amount_by_group[1]"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr class="total-row">
+                                    <td colspan="6" class="text-right">
+                                        <strong>รวมทั้งสิ้น / Total</strong>
+                                    </td>
+                                    <td class="text-right">
+                                        <strong>
+                                            <span t-field="o.amount_total"
+                                                  t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        </strong>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <!-- หมายเหตุ -->
+                        <t t-if="o.narration">
+                            <div style="margin-bottom:8px;">
+                                <strong>หมายเหตุ / Note:</strong>
+                                <div t-field="o.narration" t-options='{"widget": "html"}'/>
+                            </div>
+                        </t>
+
+                        <!-- ลายเซ็น -->
+                        <div class="row" style="margin-top:20px;">
+                            <div class="col-4 text-center">
+                                <div class="signature-box"/>
+                                <div>ผู้รับสินค้า / Received By</div>
+                                <div>วันที่ / Date: .................</div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div class="signature-box"/>
+                                <div>ผู้ตรวจสอบ / Checked By</div>
+                                <div>วันที่ / Date: .................</div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div class="signature-box"/>
+                                <div>ผู้มีอำนาจลงนาม / Authorized By</div>
+                                <div>วันที่ / Date: .................</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Reference: Filtered HTML Report Preview Page for Odoo 18
+    Use this as a starting point when you need a preview page with
+    a filter bar at the top and a rendered QWeb report below.
+    Replace `my_module` and `my_module.report_my_document` with your own values.
+-->
+<odoo>
+
+    <template id="report_preview_page" name="Filtered Report Preview Page">
+        <t t-call="web.html_container">
+            <html>
+                <head>
+                    <title>Report Preview</title>
+                    <link rel="stylesheet" href="/web/static/lib/bootstrap/css/bootstrap.min.css"/>
+                    <style>
+                        body { padding: 20px; background: #f8f9fa; }
+                        .filter-box {
+                            background: #fff;
+                            border: 1px solid #dee2e6;
+                            border-radius: 8px;
+                            padding: 20px;
+                            margin-bottom: 20px;
+                        }
+                        .report-box {
+                            background: #fff;
+                            border: 1px solid #dee2e6;
+                            border-radius: 8px;
+                            padding: 20px;
+                            min-height: 600px;
+                        }
+                        .no-data {
+                            text-align: center;
+                            padding: 60px;
+                            color: #6c757d;
+                        }
+                        @media print {
+                            .filter-box,
+                            .btn {
+                                display: none !important;
+                            }
+                            body {
+                                padding: 0;
+                                background: #fff;
+                            }
+                            .report-box {
+                                border: none;
+                                padding: 0;
+                            }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="container-fluid">
+                        <div class="filter-box">
+                            <h4 class="mb-3">Report Preview</h4>
+                            <form method="GET" action="/my_module/report_preview" class="row g-3">
+                                <div class="col-md-3">
+                                    <label class="form-label">Customer</label>
+                                    <select name="partner_id" class="form-select">
+                                        <option value="">All</option>
+                                        <t t-foreach="partners" t-as="partner">
+                                            <option t-att-value="partner.id"
+                                                    t-att-selected="str(partner.id) == filters.get('partner_id', '')">
+                                                <t t-esc="partner.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label">Date From</label>
+                                    <input type="date" name="date_from" class="form-control"
+                                           t-att-value="filters.get('date_from', '')"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label">Date To</label>
+                                    <input type="date" name="date_to" class="form-control"
+                                           t-att-value="filters.get('date_to', '')"/>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary">Preview</button>
+                                    <a href="/my_module/report_preview" class="btn btn-secondary">Reset</a>
+                                    <button type="button" class="btn btn-success" onclick="window.print()">Print</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="report-box">
+                            <t t-if="not records">
+                                <div class="no-data">
+                                    <h5>No records found</h5>
+                                    <p>Adjust filters and click Preview.</p>
+                                </div>
+                            </t>
+                            <t t-else="">
+                                <div t-raw="report_html"/>
+                            </t>
+                        </div>
+                    </div>
+                </body>
+            </html>
+        </t>
+    </template>
+
+</odoo>

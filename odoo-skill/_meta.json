@@ -1,0 +1,19 @@
+{
+  "owner": "chatcharin",
+  "slug": "odoo-18-community",
+  "displayName": "Odoo 18 Community Development",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1744329600000,
+    "commit": "initial release"
+  },
+  "history": [
+    {
+      "version": "1.0.0",
+      "publishedAt": 1744329600000,
+      "commit": "initial release"
+    }
+  ],
+  "license": "MIT",
+  "tags": ["odoo", "odoo-18", "erp", "python", "xml", "owl", "web-development", "community"]
+}

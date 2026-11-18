@@ -1,19 +1,12 @@
 # My-Skill
 
-Personal collection of AI agent skills.
+Personal collection of AI agent skills — every installed skill on the machine is vendored in this repo.
 
-## Skills in this repo
+## Skills
 
-| Skill | Description |
-|---|---|
-| `write-user-manual` | Write end-user / admin manuals (คู่มือการใช้งานระบบ) as Markdown, JSON (per-paragraph i18n th/en), Word/PDF, or HTML |
-| `project-tree` | สร้างผังโครงสร้างโปรเจกต์ (directory tree) พร้อมคำอธิบายสั้นๆ ของแต่ละโฟลเดอร์/ไฟล์ |
+**Installed at** — **Global**: `~/.agents/skills/`, `~/.devin/skills/`, `~/.config/devin/skills/` (available in every project) · **Project**: `<project>/.devin/skills/`, `.agents/skills/`, `.qoder/skills/`, `.windsurf/skills/`
 
-## All installed skills
-
-Scope legend — **Global**: `~/.agents/skills/`, `~/.devin/skills/`, `~/.config/devin/skills/` (available in every project) · **Project**: `<project>/.devin/skills/`, `.agents/skills/`, `.qoder/skills/`, `.windsurf/skills/` · **Repo**: source lives in this repository
-
-| Skill | Scope | Description |
+| Skill | Installed at | Description |
 |---|---|---|
 | `agent-browser` | Global + Project | Browser automation CLI — navigate pages, fill forms, take screenshots, extract data |
 | `api-security-best-practices` | Project | Secure API design: authn/authz, input validation, rate limiting |
@@ -52,7 +45,7 @@ Scope legend — **Global**: `~/.agents/skills/`, `~/.devin/skills/`, `~/.config
 | `odoo18-report-skill` | Project | Create / customize / debug QWeb PDF reports in Odoo 18 |
 | `pdf` | Project | Read, merge, split, fill, OCR PDF files |
 | `playwright-best-practices` | Project | Playwright tests: POM, CI/CD, flaky-test fixes, auth, visual testing |
-| `project-tree` | Repo + Project | Project/directory tree generator พร้อมคำอธิบายแต่ละโฟลเดอร์ |
+| `project-tree` | Project | Project/directory tree generator พร้อมคำอธิบายแต่ละโฟลเดอร์ |
 | `prompt-engineer` | Project | วิเคราะห์และปรับปรุง prompt ให้ชัดเจน ประหยัด token |
 | `react-performance-optimization` | Project | Fix slow React apps: re-renders, bundles, janky lists |
 | `skill-creator` | Project | Create new skills, modify and improve existing skills |
@@ -61,13 +54,13 @@ Scope legend — **Global**: `~/.agents/skills/`, `~/.devin/skills/`, `~/.config
 | `ui-ux-design-guide` | Project | UI/UX design guidelines |
 | `vercel-react-best-practices` | Project | React/Next.js performance guidelines from Vercel Engineering |
 | `vite` | Project | Vite config, plugin API, SSR, Rolldown migration |
-| `write-user-manual` | Repo + Global | End-user / admin manuals as MD / JSON / Word / PDF / HTML |
+| `write-user-manual` | Global | End-user / admin manuals as MD / JSON / Word / PDF / HTML |
 | `writing-plans` | Global | Turn specs / requirements into a multi-step implementation plan |
 | `xlsx` | Project | Create / edit / fix spreadsheets (.xlsx, .csv) |
 
 ## Devin Desktop built-in skills
 
-Shipped with Devin Desktop (`/usr/share/devin-desktop/.../sessions/skills/`):
+Shipped with Devin Desktop (`/usr/share/devin-desktop/.../sessions/skills/`) — part of the app, not vendored here:
 
 `act-on-feedback`, `code-review`, `commit`, `create-draft-pr`, `create-pr`, `fix-ci`, `generate-run-commands`, `merge`, `sync`, `sync-upstream`, `troubleshoot`, `update-pr`, `update-skills`
 

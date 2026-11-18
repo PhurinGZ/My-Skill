@@ -1,0 +1,91 @@
+[
+  {
+    "id": "python-none-error",
+    "prompt": "My Python function crashes with AttributeError: 'NoneType' object has no attribute 'split'. Here's the code:\n\ndef parse_name(user):\n    parts = user['name'].split(' ')\n    return parts[0], parts[-1]\n\nIt works sometimes but fails randomly.",
+    "assertions": [
+      "Identifies that user['name'] can be None as the root cause",
+      "Shows the full corrected function, not just a one-line fix",
+      "Adds a None guard (if check or get with default)",
+      "Writes a regression test for None input",
+      "Writes a happy path test for a normal name string",
+      "Uses pytest for the test cases"
+    ]
+  },
+  {
+    "id": "js-async-bug",
+    "prompt": "This JavaScript function always returns undefined:\n\nasync function getUser(id) {\n  const res = fetch(`/api/users/${id}`);\n  const data = res.json();\n  return data.name;\n}\n\nWhat's wrong?",
+    "assertions": [
+      "Identifies missing await on fetch() as the root cause",
+      "Identifies missing await on res.json() as a second issue",
+      "Explains why missing await causes undefined (Promise not resolved)",
+      "Shows corrected async function with both awaits",
+      "Writes a Jest or Vitest test using a mocked fetch"
+    ]
+  },
+  {
+    "id": "typescript-type-error",
+    "prompt": "TypeScript error: Type 'string | undefined' is not assignable to type 'string'. Here's the code:\n\ninterface Config {\n  apiUrl?: string;\n}\n\nfunction buildUrl(config: Config): string {\n  return config.apiUrl + '/endpoint';\n}",
+    "assertions": [
+      "Explains that apiUrl is optional so it can be undefined",
+      "Shows a fix using optional chaining, nullish coalescing, or a type guard",
+      "The fix preserves the return type as string",
+      "Writes a test for when apiUrl is undefined",
+      "Writes a test for when apiUrl is provided"
+    ]
+  },
+  {
+    "id": "python-off-by-one",
+    "prompt": "My Python function to find duplicates misses the last element:\n\ndef find_duplicates(arr):\n    seen = set()\n    duplicates = []\n    for i in range(len(arr) - 1):\n        if arr[i] in seen:\n            duplicates.append(arr[i])\n        seen.add(arr[i])\n    return duplicates\n\nExample: find_duplicates([1,2,3,1,3]) returns [1] but should return [1,3]",
+    "assertions": [
+      "Identifies the off-by-one as range(len(arr) - 1) skipping the last element",
+      "Fixes to range(len(arr)) or equivalent idiom",
+      "Shows the corrected full function",
+      "Tests the exact failing example [1,2,3,1,3] expecting [1,3]",
+      "Tests an edge case like an empty list or list with no duplicates"
+    ]
+  },
+  {
+    "id": "stack-trace-analysis",
+    "prompt": "I'm getting this error in my Node.js app:\n\nTypeError: Cannot read properties of undefined (reading 'map')\n    at formatUsers (/app/utils/users.js:12:18)\n    at /app/routes/users.js:34:22\n    at Layer.handle [as handle_request] (/app/node_modules/express/lib/router/layer.js:95:5)\n\nHere's users.js line 12: const names = users.map(u => u.name);",
+    "assertions": [
+      "Identifies that users is undefined when formatUsers is called",
+      "Traces the call to routes/users.js line 34 as where to look next",
+      "Suggests checking if the data source (DB query, API call) returned undefined",
+      "Shows how to add a guard or default value",
+      "Writes a test that passes undefined and verifies safe behavior"
+    ]
+  },
+  {
+    "id": "mutable-default-argument",
+    "prompt": "My Python function behaves weirdly — each call seems to remember data from the previous call:\n\ndef add_item(item, collection=[]):\n    collection.append(item)\n    return collection\n\nadd_item('a')  # returns ['a'] — ok\nadd_item('b')  # returns ['a', 'b'] — should be ['b']!",
+    "assertions": [
+      "Identifies the mutable default argument anti-pattern",
+      "Explains that the default list is created once and shared across calls",
+      "Shows the correct fix using None as default with if collection is None",
+      "Writes a test showing two separate calls return independent lists",
+      "Mentions this is a classic Python gotcha"
+    ]
+  },
+  {
+    "id": "react-infinite-loop",
+    "prompt": "My React component is causing infinite re-renders and crashing the browser:\n\nuseEffect(() => {\n  setData(processData(data));\n}, [data]);",
+    "assertions": [
+      "Identifies that setting state inside useEffect with data as dependency creates an infinite loop",
+      "Explains the cycle: data changes → effect runs → setData → data changes → repeat",
+      "Suggests either removing data from deps or memoizing processData with useMemo",
+      "Shows corrected code",
+      "Optionally mentions the React ESLint exhaustive-deps rule"
+    ]
+  },
+  {
+    "id": "multifile-import-error",
+    "prompt": "I'm getting 'ImportError: cannot import name calculate_tax from utils'. Here's my project:\n\n# utils/taxes.py\ndef calc_tax(amount, rate):\n    return amount * rate\n\n# main.py\nfrom utils import calculate_tax\nresult = calculate_tax(100, 0.2)",
+    "assertions": [
+      "Identifies the function is named calc_tax but imported as calculate_tax",
+      "Identifies the import path should be from utils.taxes import calc_tax",
+      "Shows the corrected import line",
+      "Optionally suggests renaming for clarity",
+      "Writes a simple test importing and calling calc_tax correctly"
+    ]
+  }
+]

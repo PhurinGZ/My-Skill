@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Debug & Test Cheatsheet</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; background: #0f172a; color: #e2e8f0; }
+  h1 { color: #38bdf8; border-bottom: 1px solid #1e40af; padding-bottom: .5rem; }
+  h2 { color: #7dd3fc; margin-top: 2rem; }
+  h3 { color: #bae6fd; }
+  .card { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 1rem 1.5rem; margin: 1rem 0; }
+  .badge { display: inline-block; padding: .2rem .6rem; border-radius: 4px; font-size: .75rem; font-weight: 600; margin-right: .4rem; }
+  .py { background: #1e3a5f; color: #60a5fa; }
+  .js { background: #3b2f00; color: #fbbf24; }
+  .ts { background: #1e3a5f; color: #a78bfa; }
+  .all { background: #1f2937; color: #9ca3af; }
+  code { background: #0f172a; border: 1px solid #334155; border-radius: 4px; padding: .1rem .4rem; font-size: .85em; color: #f472b6; }
+  pre { background: #0f172a; border: 1px solid #334155; border-radius: 6px; padding: 1rem; overflow-x: auto; font-size: .85em; line-height: 1.6; }
+  .error { color: #f87171; }
+  .fix { color: #4ade80; }
+  .tip { color: #fbbf24; }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; border-bottom: 1px solid #334155; padding: .5rem; color: #94a3b8; font-size: .8rem; text-transform: uppercase; }
+  td { padding: .5rem; border-bottom: 1px solid #1e293b; vertical-align: top; }
+</style>
+</head>
+<body>
+
+<h1>🐛 Debug & Test Cheatsheet</h1>
+
+<h2>Common Errors by Language</h2>
+
+<div class="card">
+  <h3><span class="badge py">Python</span> Common Bugs</h3>
+  <table>
+    <tr><th>Error</th><th>Typical Cause</th><th>Quick Fix</th></tr>
+    <tr>
+      <td><code class="error">AttributeError: 'NoneType'</code></td>
+      <td>Called method on None — forgot to check return value</td>
+      <td>Add <code>if result is not None:</code> guard</td>
+    </tr>
+    <tr>
+      <td><code class="error">TypeError: unhashable type: 'list'</code></td>
+      <td>Used a list as a dict key or set element</td>
+      <td>Convert to <code>tuple()</code></td>
+    </tr>
+    <tr>
+      <td><code class="error">KeyError: 'x'</code></td>
+      <td>Accessing dict key that doesn't exist</td>
+      <td>Use <code>dict.get('x', default)</code></td>
+    </tr>
+    <tr>
+      <td><code class="error">RecursionError</code></td>
+      <td>Missing base case in recursive function</td>
+      <td>Add base case; check termination condition</td>
+    </tr>
+    <tr>
+      <td>Mutable default argument bug</td>
+      <td><code>def f(lst=[]):</code> — shared across calls</td>
+      <td>Use <code>def f(lst=None): lst = lst or []</code></td>
+    </tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3><span class="badge js">JavaScript</span> <span class="badge ts">TypeScript</span> Common Bugs</h3>
+  <table>
+    <tr><th>Error</th><th>Typical Cause</th><th>Quick Fix</th></tr>
+    <tr>
+      <td><code class="error">Cannot read properties of undefined</code></td>
+      <td>Accessing property on undefined/null object</td>
+      <td>Use optional chaining <code>obj?.prop</code></td>
+    </tr>
+    <tr>
+      <td>Unhandled promise rejection</td>
+      <td>Missing <code>await</code> or no <code>.catch()</code></td>
+      <td>Add <code>await</code> + wrap in <code>try/catch</code></td>
+    </tr>
+    <tr>
+      <td><code class="error">this is undefined</code></td>
+      <td>Arrow function vs regular function context</td>
+      <td>Use arrow function or <code>.bind(this)</code></td>
+    </tr>
+    <tr>
+      <td>Stale closure in loop</td>
+      <td><code>var</code> in loop captured by closure</td>
+      <td>Replace <code>var</code> with <code>let</code></td>
+    </tr>
+    <tr>
+      <td><span class="badge ts">TS</span> <code class="error">Type 'X' is not assignable to type 'Y'</code></td>
+      <td>Wrong type passed; missing type narrowing</td>
+      <td>Add type guard or cast appropriately</td>
+    </tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3><span class="badge all">Universal</span> Off-by-One & Boundary Bugs</h3>
+  <pre><span class="error"># Wrong — misses last element</span>
+for i in range(len(arr) - 1):
+    process(arr[i])
+
+<span class="fix"># Correct</span>
+for i in range(len(arr)):
+    process(arr[i])
+
+<span class="tip"># Or better</span>
+for item in arr:
+    process(item)</pre>
+</div>
+
+<h2>Test Writing Quick Reference</h2>
+
+<div class="card">
+  <h3><span class="badge py">Python</span> pytest Template</h3>
+  <pre>import pytest
+from mymodule import my_function
+
+<span class="tip"># Regression test — covers the exact bug</span>
+def test_my_function_handles_none_input():
+    result = my_function(None)
+    assert result == []  <span class="tip"># or whatever the correct behavior is</span>
+
+<span class="tip"># Happy path</span>
+def test_my_function_normal_case():
+    result = my_function([1, 2, 3])
+    assert result == [2, 4, 6]
+
+<span class="tip"># Edge case</span>
+def test_my_function_empty_list():
+    result = my_function([])
+    assert result == []
+
+<span class="tip"># Expected exception</span>
+def test_my_function_invalid_type():
+    with pytest.raises(TypeError):
+        my_function("not a list")</pre>
+</div>
+
+<div class="card">
+  <h3><span class="badge js">JS</span> <span class="badge ts">TS</span> Jest / Vitest Template</h3>
+  <pre>import { myFunction } from './myModule';
+
+describe('myFunction', () => {
+  <span class="tip">// Regression test</span>
+  it('handles null input without throwing', () => {
+    expect(() => myFunction(null)).not.toThrow();
+    expect(myFunction(null)).toEqual([]);
+  });
+
+  <span class="tip">// Happy path</span>
+  it('returns doubled values for normal input', () => {
+    expect(myFunction([1, 2, 3])).toEqual([2, 4, 6]);
+  });
+
+  <span class="tip">// Edge case</span>
+  it('returns empty array for empty input', () => {
+    expect(myFunction([])).toEqual([]);
+  });
+
+  <span class="tip">// Async</span>
+  it('resolves with data on success', async () => {
+    const result = await myAsyncFunction('valid-id');
+    expect(result).toHaveProperty('id');
+  });
+});</pre>
+</div>
+
+<h2>Debug Checklist</h2>
+
+<div class="card">
+  <ol>
+    <li>📍 <strong>Read the full error</strong> — error type, file, line number</li>
+    <li>🔎 <strong>Trace the stack</strong> — follow the call chain to root cause</li>
+    <li>❓ <strong>Ask: why did this happen?</strong> — not just what failed</li>
+    <li>🔁 <strong>Check: null/undefined/None</strong> — most common culprit</li>
+    <li>⚡ <strong>Check: async/await</strong> — missing await is a silent killer</li>
+    <li>🔢 <strong>Check: off-by-one</strong> — especially in loops and array indexing</li>
+    <li>📦 <strong>Check: imports/exports</strong> — wrong module, wrong named export</li>
+    <li>✅ <strong>Write the regression test first</strong>, then the fix</li>
+  </ol>
+</div>
+
+</body>
+</html>
