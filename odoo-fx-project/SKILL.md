@@ -1,5 +1,6 @@
 ---
 name: odoo-fx-project-domain
+author: PhurinGZ
 description: Understand and modify FX Project domain logic including models, calculations, state flow, and permissions in Odoo 17.
 ---
 

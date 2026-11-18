@@ -1,5 +1,6 @@
 ---
 name: odoo-cogmenu-export
+author: PhurinGZ
 description: Add custom export/download actions to the Odoo 17 cog menu and handle binary file downloads reliably from dropdown contexts.
 ---
 

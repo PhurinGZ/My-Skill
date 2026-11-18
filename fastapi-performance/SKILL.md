@@ -1,5 +1,6 @@
 ---
 name: fastapi-performance
+author: PhurinGZ
 description: Diagnose and fix FastAPI performance problems — slow endpoints, low requests-per-second, high latency under load, event-loop stalls, or "why is my API slow in production" questions. Use this whenever the user asks to optimize, speed up, profile, scale, or tune a FastAPI app or service, mentions throughput/RPS/latency/benchmarks for FastAPI, is deciding between async def and def, is configuring Uvicorn/Gunicorn workers, is picking a response/serialization strategy, or reports symptoms like "fine locally but slow under load" — even if they don't say the word "performance". Also covers Thai phrasing like "fastapi ช้า", "ปรับ performance fastapi", "optimize fastapi ให้หน่อย". Grounded in the official FastAPI/Starlette docs rather than assumed knowledge, since a lot of popular blog advice on this topic (ORJSONResponse, 2×cores+1 workers, etc.) is outdated.
 ---
 

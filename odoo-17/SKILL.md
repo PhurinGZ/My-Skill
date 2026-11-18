@@ -1,5 +1,6 @@
 ---
 name: odoo-17
+author: PhurinGZ
 description: Odoo 17 development best practices, common patterns, and troubleshooting guide. Covers model inheritance, view overrides, security (access rights & record rules), menu visibility, and OWL frontend.
 ---
 

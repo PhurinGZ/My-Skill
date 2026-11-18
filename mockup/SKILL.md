@@ -1,5 +1,6 @@
 ---
 name: mockup
+author: PhurinGZ
 description: >
   สร้าง interactive HTML mockup ที่เหมือน Odoo 17/18/19 จริงๆ เพื่อใช้ present งานโดยไม่ต้องมี Odoo จริง ใช้ skill นี้ทุกครั้งที่ user พูดถึง: "mockup odoo", "จำลอง odoo", "ทำหน้า odoo", "odoo demo", "present odoo", "odoo prototype", หรือขอสร้างหน้าจอ ERP ใดๆ ที่คล้าย Odoo skill นี้ครอบคลุมทุก module: Sales, CRM, Inventory, Accounting, HR, Manufacturing, Purchase, Project
 ---

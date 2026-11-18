@@ -1,5 +1,6 @@
 ---
 name: react-performance-optimization
+author: PhurinGZ
 description: Expert guidance for diagnosing and fixing slow React apps — unnecessary re-renders, large bundles, janky lists, and slow initial loads. Covers React DevTools Profiler workflow, React.memo/useMemo/useCallback, the React Compiler (React 19+), state/context restructuring, code splitting with lazy/Suspense, and list virtualization. Use this skill whenever the user reports a React app or component feels slow or laggy, asks to "optimize" or "speed up" a React component/page, mentions unnecessary re-renders, large bundle size, slow initial load, janky scrolling on long lists, or wants a React DevTools Profiler / Lighthouse / Core Web Vitals result explained. Trigger even if they don't say "performance" explicitly — e.g. "this list stutters when I scroll", "the dashboard takes forever to load", "why does typing in this input lag", "the bundle is huge".
 ---
 

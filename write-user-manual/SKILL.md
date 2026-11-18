@@ -1,5 +1,6 @@
 ---
 name: write-user-manual
+author: PhurinGZ
 description: Write end-user / admin manuals for a software system or module (คู่มือการใช้งานระบบ) as Markdown, JSON (per-paragraph i18n keys, th/en), Word/PDF, or HTML. Interviews the user first (format, audience, language, scope), studies the real system (code, existing manuals, screenshots, the user's explanation), then writes task-based steps and audits them before delivery. Make sure to use this skill whenever the user asks to write, draft, improve, translate, or extend a manual, user guide, how-to guide, คู่มือ, วิธีใช้, manual.json, or in-app help for any system, module, or feature — even if they don't say "manual" explicitly.
 ---
 

@@ -1,5 +1,6 @@
 ---
 name: nextjs-security-audit
+author: PhurinGZ
 description: Runs a full-codebase security audit of a Next.js project (App Router or Pages Router) — checks the installed Next.js/React version against known critical CVEs (middleware/proxy auth bypass, RSC deserialization RCE, cache poisoning, SSRF, DoS), then greps the codebase for common misconfigurations (auth logic living only in middleware, secrets leaked via NEXT_PUBLIC_, unvalidated Server Actions, dangerouslySetInnerHTML/XSS, open redirects, SSRF-prone fetches, missing security headers/CSP, insecure cookies, wildcard image remotePatterns, exposed source maps). Produces a severity-ranked report with concrete fixes and file:line references. Trigger for "audit", "security check", "pentest", "review the security of", "harden", or "ตรวจสอบความปลอดภัย" / "เช็ค security" a Next.js/React app, or asking if it's safe/vulnerable/up to date — even for one narrow concern (e.g. "is my middleware auth safe?"), since that's a good entry point to the fuller audit.
 ---
 

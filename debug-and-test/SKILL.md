@@ -1,5 +1,6 @@
 ---
 name: debug-and-test
+author: PhurinGZ
 description: >
   A skill for systematically debugging code, analyzing errors, and writing test cases.
   Use this skill whenever the user: shares code that is broken or not working as expected,

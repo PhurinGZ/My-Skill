@@ -1,5 +1,6 @@
 ---
 name: odoo-fx-project-reports
+author: PhurinGZ
 description: Fix and improve QWeb PDF reports for FX Project including totals, table alignment, and XML validation.
 ---
 

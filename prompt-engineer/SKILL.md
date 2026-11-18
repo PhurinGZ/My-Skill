@@ -1,5 +1,6 @@
 ---
 name: prompt-engineer
+author: PhurinGZ
 description: >
   วิเคราะห์และปรับปรุง prompt ของผู้ใช้ให้ชัดเจน ประหยัด token และได้ผลลัพธ์ตรงกับเจตนามากที่สุด
   ใช้ skill นี้ทุกครั้งที่ผู้ใช้: ขอให้ช่วย "แต่ง prompt", "ปรับ prompt", "เขียน prompt ให้ดีขึ้น",

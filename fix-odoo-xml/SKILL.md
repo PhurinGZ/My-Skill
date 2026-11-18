@@ -1,5 +1,6 @@
 ---
 name: fix-odoo-xml
+author: PhurinGZ
 description: Fix Odoo 17 XML view warnings and layout issues.
 ---
 

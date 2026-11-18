@@ -1,5 +1,6 @@
 ---
 name: ui-ux-design-guide
+author: PhurinGZ
 description: >-
   Design intelligence for planning and building high-quality UI/UX on web and mobile: visual style
   selection, color palette construction, typography pairing, layout patterns by product type

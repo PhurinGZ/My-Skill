@@ -1,5 +1,6 @@
 ---
 name: fullstack-react-strapi
+author: PhurinGZ
 description: Expert-level guidance for building full-stack applications with React.js (frontend), Strapi v5 CMS (backend/API), and PostgreSQL (database), using Tailwind CSS + shadcn/ui as the design system. Use this skill whenever the user mentions React + Strapi, asks to scaffold a full-stack project, wants to set up a CMS-backed React app, needs architecture advice for a headless CMS setup, asks about content types, API integration, auth, roles/permissions, file uploads, webhooks, i18n, caching, testing, or deployment for this stack. Trigger even if the user only mentions one part of the stack (e.g. "set up Strapi with Postgres", "React Query with Strapi", "deploy Strapi to Railway") — assume the full-stack context unless told otherwise. Also trigger for questions about Strapi plugins, middleware, lifecycle hooks, custom controllers, RBAC, or any Strapi-specific configuration.
 ---
 

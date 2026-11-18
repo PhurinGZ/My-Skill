@@ -1,5 +1,6 @@
 ---
 name: odoo18-report
+author: PhurinGZ
 description: >
   Create, customize, and debug QWeb PDF Reports in Odoo 18 at any level — from basic templates
   to advanced topics. Use this skill whenever the user mentions: "create a report", "PDF report",

@@ -1,5 +1,6 @@
 ---
 name: human-ux-design
+author: PhurinGZ
 description: Design and build frontend interfaces with exceptional UX/UI quality that is indistinguishable from human-crafted design, and review or audit existing UIs to judge whether they are good or not. Use this skill whenever the user asks to build, redesign, or improve any frontend UI, including websites, web apps, dashboards, landing pages, components, forms, or any visual interface in React, HTML/CSS, Vue, Svelte, or any other framework. Also use it whenever the user asks to review, critique, audit, rate, score, or check a UI, screenshot, mockup, or page (for example "is this design good", "review my UI", "what's wrong with this layout", "ตรวจ UI", "รีวิวหน้าเว็บ", "UI นี้ดีไหม", "ช่วยดูดีไซน์"). Trigger this skill even for small UI tasks like "make this look better", "design a login page", or "improve the UX of this form" - the goal is always human-quality output that doesn't look AI-generated.
 ---
 
